@@ -1,48 +1,43 @@
-// pipelineGeneral.groovy
+def call(Map param){
+    pipeline{
 
-pipeline {
-    agent any
+        agent any
 
-    environment {
-        // Define variables si es necesario
-    }
-
-    stages {
-        stage('Checkout') {
-            steps {
-                // Puedes agregar pasos para realizar la verificación del código fuente
-                // Por ejemplo: git 'https://tu-repositorio.git'
-            }
+        tools{
+            nodejs 'NodeJS'
         }
+      /*  environment{
+         nodeAppPath='http://host.docker.internal:3001/'
+        } */
+        stages{
 
-        stage('Build') {
-            steps {
-                // Llama a la función de la biblioteca compartida para la etapa de construcción
-                libraryUtils.buildStep()
-            }
-        }
-
-        stage('Test') {
-            steps {
-                // Llama a la función de la biblioteca compartida para la etapa de pruebas
-                libraryUtils.testStep()
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                // Llama a la función de la biblioteca compartida para la etapa de implementación
-                libraryUtils.deployStep()
-            }
-        }
-    }
-
-    post {
-        success {
-            // Puedes agregar acciones que se ejecuten después de que el Pipeline sea exitoso
-        }
-        failure {
-            // Puedes agregar acciones que se ejecuten después de que el Pipeline falle
+            stage('Checkout'){
+               steps{
+                    script{
+                      def repo = new org.devops.buildR()
+                        repo.checkGit(scmUrl:param.scmUrl)
+                       repo.install()
+                        repo.build()
+                     }
+                 }
+             }
+             stage('Test react-test-jenkinsfile'){
+                 steps{
+                     script{
+                         def repo = new org.devops.buildR()
+                         repo.test()
+                     }
+                 }
+             }
+            stage('Sonar'){
+                 steps{
+                    script{
+                       def ana = new org.devops.analisisSonarqube()
+                        ana.analisisSonar()
+                    }
+                 }
+           }
+                   
         }
     }
 }

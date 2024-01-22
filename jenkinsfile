@@ -1,5 +1,0 @@
-/**
-Realiza una llamada a devops a la rama mmaster
-*/
-@Library('devops@master') _
-pipelineGeneral(scmUrl: 'Se llama a si mismo')

@@ -14,12 +14,7 @@ def call(Map param){
            PROJECT = "${env.GIT_URL}".replaceAll('.+/(.+)\\.git', '$1')toLowerCase()
        } 
         stages{
-            stage('Conditional Stage') {
-            when {
-                expression { env.BRANCH_NAME == 'feature' }
-            }
 
-        
                 stage('Clone App') {
                 steps {
                     script {
@@ -52,5 +47,4 @@ def call(Map param){
         }
         
         }
-    }
 }

@@ -5,8 +5,8 @@ def analisisSonar(){
     if(scannerHome){
         withSonarQubeEnv('sonnar'){
             sh "${scannerHome}/bin/sonar-scanner \
-            -Dsonar.projectKey=react-test \
-            -Dsonar.projectName=react-test \
+            -Dsonar.projectKey=react-test-jenkinsfile \
+            -Dsonar.projectName=react-test-jenkinsfile \
             -Dsonar.sources=src \
             -Dsonar.tests=src/__test__ \
             -Dsonar.exclusions='**/*.test.js' \

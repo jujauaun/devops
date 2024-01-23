@@ -1,4 +1,5 @@
 def call(Map param){
+
     pipeline{
 
         agent any
@@ -6,38 +7,50 @@ def call(Map param){
         tools{
             nodejs 'NodeJS'
         }
-      /*  environment{
-         nodeAppPath='http://host.docker.internal:3001/'
-        } */
+          triggers {
+        pollSCM('* * * * *') // Programa la verificación del repositorio cada minuto
+    }
+       environment{
+           PROJECT = "${env.GIT_URL}".replaceAll('.+/(.+)\\.git', '$1')toLowerCase()
+       } 
         stages{
+            stage('Conditional Stage') {
+            when {
+                expression { env.BRANCH_NAME == 'feature' }
+            }
 
-            stage('Checkout'){
-               steps{
-                    script{
-                      def repo = new org.devops.buildR()
-                        repo.checkGit(scmUrl:param.scmUrl)
-                       repo.install()
-                        repo.build()
-                     }
-                 }
-             }
-             stage('Test react-test-jenkinsfile'){
-                 steps{
-                     script{
-                         def repo = new org.devops.buildR()
-                         repo.test()
-                     }
-                 }
-             }
-            stage('Sonar'){
+        
+                stage('Clone App') {
+                steps {
+                    script {
+                        def cloneapp = new org.devops.lb_buildartefacto()
+                        cloneapp.clone(scmUrl:params.scmUrl)
+                    }
+                }
+                
+            }
+
+             stage('Construccion App') {
+                steps {
+                    script {
+                        def buildapp = new org.devops.lb_buildartefacto()
+                        buildapp.install()
+                    }
+                }
+                
+            }
+
+            stage('Sonar Analisis'){
                  steps{
                     script{
                        def ana = new org.devops.analisisSonarqube()
-                        ana.analisisSonar()
+                        scannerapp("${PROJECT}")
                     }
                  }
            }
                    
+        }
+        
         }
     }
 }

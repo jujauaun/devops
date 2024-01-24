@@ -11,7 +11,7 @@ def call(Map param){
         pollSCM('* * * * *') // Programa la verificación del repositorio cada minuto
     }*/
        environment{
-           PROJECT = "${env.GIT_URL}".replaceAll('.+/(.+)\\.git', '$1')toLowerCase()
+           PROJECT = "${env.scmUrl}".replaceAll('.+/(.+)\\.git', '$1')toLowerCase()
        } 
         stages{
             

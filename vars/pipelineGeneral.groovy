@@ -15,15 +15,7 @@ def call(Map param){
        } 
         stages{
             
-  stage('Construccion App') {
-                steps {
-                    script {
-                        def buildapp = new org.devops.lb_buildartefacto()
-                        buildapp.install()
-                    }
-                }
-                
-            }
+
                 stage('Clone App') {
                 steps {
                     script {
@@ -34,7 +26,15 @@ def call(Map param){
                 
             }
 
-           
+             stage('Construccion App') {
+                steps {
+                    script {
+                        def buildapp = new org.devops.lb_buildartefacto()
+                        buildapp.install()
+                    }
+                }
+                
+            }
 
           /*  stage('Sonar Analisis'){
                  steps{

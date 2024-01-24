@@ -21,7 +21,6 @@ def call(Map param){
                     script {
                         def buildapp = new org.devops.lb_buildartefacto()
                         buildapp.install()
-                        buildapp.testCoverage()
                         def cloneapp = new org.devops.lb_buildartefacto()
                         cloneapp.clone(scmUrl:params.scmUrl)
                     }
@@ -34,6 +33,8 @@ def call(Map param){
                     script{
                        def analisiSonar = new org.devops.lb_analisissonarqube()
                        analisiSonar.analisisSonar("${PROJECT}")
+                       def test = new org.devops.lb_analisissonarqube()
+                       test.testCoverage()
                     }
                  }
            }

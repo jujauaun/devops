@@ -22,21 +22,12 @@ def call(Map param){
                         def buildapp = new org.devops.lb_buildartefacto()
                         buildapp.install()
                         buildapp.testCoverage()
-                    }
-                }
-                
-            }
-
-      stage('Clone App') {
-                steps {
-                    script {
                         def cloneapp = new org.devops.lb_buildartefacto()
                         cloneapp.clone(scmUrl:params.scmUrl)
                     }
                 }
                 
             }
- 
 
   stage('Sonar Analisis'){
                  steps{

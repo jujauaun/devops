@@ -15,16 +15,7 @@ def call(Map param){
        } 
         stages{
             
-        stage('Clone App') {
-                steps {
-                    script {
-                        def cloneapp = new org.devops.lb_buildartefacto()
-                        cloneapp.clone(scmUrl:params.scmUrl)
-                    }
-                }
-                
-            }
- 
+      
              stage('Construccion App') {
                 steps {
                     script {
@@ -35,8 +26,16 @@ def call(Map param){
                 
             }
 
-    
-
+      stage('Clone App') {
+                steps {
+                    script {
+                        def cloneapp = new org.devops.lb_buildartefacto()
+                        cloneapp.clone(scmUrl:params.scmUrl)
+                    }
+                }
+                
+            }
+ 
 
 
 

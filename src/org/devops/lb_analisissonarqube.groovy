@@ -1,12 +1,12 @@
 package org.devops
 
 
-def analisisSonar(git_name){
+def analisisSonar(gitName){
     def scannerHome = tool 'sonar-scanner'
     if(scannerHome){
         withSonarQubeEnv('sonar-scanner'){
             sh "${scannerHome}/bin/sonar-scanner \
-            -Dsonar.projectKey=${git_name} \
+            -Dsonar.projectKey=${gitName} \
             -Dsonar.projectName=${PROJECT} \
             -Dsonar.sources=${env.source} \
             -Dsonar.tests=${env.UbTest} \

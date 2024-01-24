@@ -1,8 +1,5 @@
 package org.devops
 
-def testCoverage(){
-    sh 'npm test' 
-}
 
 def analisisSonar(git_name){
     def scannerHome = tool 'sonar-scanner'

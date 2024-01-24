@@ -6,7 +6,7 @@ def analisisSonar(git_name){
         withSonarQubeEnv('sonar-scanner'){
             sh "${scannerHome}/bin/sonar-scanner \
             -Dsonar.projectKey=${git_name} \
-            -Dsonar.projectName=${env.Proyect} \
+            -Dsonar.projectName=${env.Project} \
             -Dsonar.sources=${env.WORKSPACE} \
             -Dsonar.tests=${env.UbTest} \
             -Dsonar.exclusions=${env.exclus} \

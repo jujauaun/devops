@@ -21,7 +21,6 @@ def call(Map param){
                     script {
                         def buildapp = new org.devops.lb_buildartefacto()
                         buildapp.install()
-                        buildapp.testCoverage()
                     }
                 }
                 
@@ -42,6 +41,7 @@ def call(Map param){
                  steps{
                     script{
                        def analisiSonar = new org.devops.lb_analisissonarqube()
+                       analisiSonar.testCoverage()
                        analisiSonar.analisisSonar("${PROJECT}")
                     }
                  }

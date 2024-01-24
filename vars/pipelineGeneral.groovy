@@ -31,10 +31,11 @@ def call(Map param){
   stage('Sonar Analisis'){
                  steps{
                     script{
-                       def analisiSonar = new org.devops.lb_analisissonarqube()
-                       analisiSonar.analisisSonar("${PROJECT}")
                        def test = new org.devops.lb_analisissonarqube()
                        test.testCoverage()
+                       def analisiSonar = new org.devops.lb_analisissonarqube()
+                       analisiSonar.analisisSonar("${PROJECT}")
+                       
                     }
                  }
            }

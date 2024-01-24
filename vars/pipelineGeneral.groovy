@@ -22,7 +22,7 @@ def call(Map param){
                         def buildapp = new org.devops.lb_buildartefacto()
                         buildapp.install()
                         def cloneapp = new org.devops.lb_buildartefacto()
-                        cloneapp.clone(scmUrl:params.scmUrl)
+                        cloneapp.clone()
                     }
                 }
                 

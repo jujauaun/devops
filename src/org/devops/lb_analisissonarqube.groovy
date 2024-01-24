@@ -1,17 +1,17 @@
 package org.devops
 
-def analisisSonar(){
-    def scannerHome = tool 'sonnar'
+def analisisSonar(git_name){
+    def scannerHome = tool 'sonar-scanner'
     if(scannerHome){
-        withSonarQubeEnv('sonnar'){
+        withSonarQubeEnv('sonar-scanner'){
             sh "${scannerHome}/bin/sonar-scanner \
-            -Dsonar.projectKey=react-test-jenkinsfile \
-            -Dsonar.projectName=react-test-jenkinsfile \
-            -Dsonar.sources=src \
-            -Dsonar.tests=src/__test__ \
-            -Dsonar.exclusions='**/*.test.js' \
-            -Dsonar.testExecutionReportPaths=./test-report.xml \
-            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+            -Dsonar.projectKey=${git_name} \
+            -Dsonar.projectName=${env.Proyect} \
+            -Dsonar.sources=${env.WORKSPACE} \
+            -Dsonar.tests=${env.UbTest} \
+            -Dsonar.exclusions=${env.exclus} \
+            -Dsonar.testExecutionReportPaths=${env.reportGenerate} \
+            -Dsonar.javascript.lcov.reportPaths=${env.icov}
             "
         }
     } else{

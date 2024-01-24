@@ -7,9 +7,9 @@ def call(Map param){
         tools{
             nodejs 'NodeJS'
         }
-          triggers {
+      /*triggers {
         pollSCM('* * * * *') // Programa la verificación del repositorio cada minuto
-    }
+    }*/
        environment{
            PROJECT = "${env.GIT_URL}".replaceAll('.+/(.+)\\.git', '$1')toLowerCase()
        } 

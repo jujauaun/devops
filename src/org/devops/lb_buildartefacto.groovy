@@ -9,7 +9,3 @@ def clone(Map params){
 def install(){
     sh 'npm install' 
 }
-
-def testCoverage(){
-    sh 'npm test' 
-}

@@ -7,12 +7,12 @@ def analisisSonar(git_name){
             sh "${scannerHome}/bin/sonar-scanner \
             -Dsonar.projectKey=${git_name} \
             -Dsonar.projectName=${PROJECT} \
-            -Dsonar.sources=${env.WORKSPACE} 
+            -Dsonar.sources=${env.WORKSPACE} "
           //-Dsonar.tests=${env.UbTest} \
           //-Dsonar.exclusions=${env.exclus} \
           //-Dsonar.testExecutionReportPaths=${env.reportGenerate} \
-          //-Dsonar.javascript.lcov.reportPaths=${env.icov}*/
-            "
+          //-Dsonar.javascript.lcov.reportPaths=${env.icov}
+            
         }
     } else{
         error 'SonarQube Scanner not found'

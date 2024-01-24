@@ -1,6 +1,6 @@
 package org.devops
 
-def clone(Map params){
+def clone(){
     git branch: "${env.nameBranch}", url: "${env.scmUrl}"
 }
 

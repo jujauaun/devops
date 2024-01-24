@@ -15,7 +15,7 @@ def call(Map param){
        } 
         stages{
             
-            stage('Clone App') {
+        stage('Clone App') {
                 steps {
                     script {
                         def cloneapp = new org.devops.lb_buildartefacto()
@@ -34,6 +34,8 @@ def call(Map param){
                 }
                 
             }
+
+    
 
 
 

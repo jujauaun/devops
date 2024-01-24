@@ -42,7 +42,7 @@ def call(Map param){
                  steps{
                     script{
                        def analisiSonar = new org.devops.lb_analisissonarqube()
-                        analisiSonar("${PROJECT}")
+                       analisiSonar.analisisSonar("${PROJECT}")
                     }
                  }
            }

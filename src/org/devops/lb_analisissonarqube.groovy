@@ -13,10 +13,10 @@ def analisisSonar(gitName){
             -Dsonar.projectKey=${gitName} \
             -Dsonar.projectName=${PROJECT} \
             -Dsonar.sources=${env.source} \
-            -Dsonar.tests=${env.UbTest} \
-            -Dsonar.exclusions=${env.exclus} \
-            -Dsonar.testExecutionReportPaths=${env.reportGenerate} \
-            -Dsonar.javascript.lcov.reportPaths=${env.icov}"
+            -Dsonar.tests=src/__test__ \
+            -Dsonar.exclusions='**/*.test.js' \
+            -Dsonar.testExecutionReportPaths=./test-report.xml \
+            -Dsonar.javascript.lcov.reportPaths=./coverage/lcov.info"
             
         }
     } else{

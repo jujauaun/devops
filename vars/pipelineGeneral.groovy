@@ -41,8 +41,8 @@ def call(Map param){
   stage('Sonar Analisis'){
                  steps{
                     script{
-                       def ana = new org.devops.analisisSonarqube()
-                        scannerapp("${PROJECT}")
+                       def analisiSonar = new org.devops.lb_analisissonarqube()
+                        analisiSonar("${PROJECT}")
                     }
                  }
            }

@@ -1,4 +1,4 @@
-def call(Map param){
+def call(){
 
     pipeline{
 
@@ -16,7 +16,7 @@ def call(Map param){
         stages{
             
       
-             stage('Construccion App') {
+             stage('Fase 1: Construccion App') {
                 steps {
                     script {
                         def buildapp = new org.devops.lb_buildartefacto()
@@ -28,8 +28,8 @@ def call(Map param){
                 
             }
 
-  stage('Sonar Analisis'){
-                 steps{
+         stage('Fase 1: Sonar Analisis'){
+                  steps{
                     script{
                        def test = new org.devops.lb_analisissonarqube()
                        test.testCoverage()

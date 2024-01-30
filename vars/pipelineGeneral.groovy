@@ -5,11 +5,11 @@ def call(){
         agent any
 
         tools{
-            nodejs 'NodeJS18'
+            nodejs 'NodeJS'
         }
         
         environment{
-            projectName = "${env.GIT_URL_1}".replaceAll('.+/(.+)\\.git', '$1')toLowerCase()
+            projectName = "${env.UrlGitHub}".replaceAll('.+/(.+)\\.git', '$1')toLowerCase()
         }
 
         stages{

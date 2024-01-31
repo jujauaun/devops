@@ -6,5 +6,5 @@ def AnalisisOwasp(projectGitName){
         sh 'docker exec owasp mkdir /zap/wrk'
         sh "docker exec owasp zap-full-scan.py -t https://example.com/ -r reportapp.html -I"
         sh 'docker cp owasp:/zap/wrk/reportapp.html reportapp.html'
-        sh "docker cp reportapp.html jenkins:/var/jenkins_home/workspace/${env.NameNetwork}/" 
+        sh "docker cp reportapp.html jenkins:/var/jenkins_home/workspace/fase2/" 
 }

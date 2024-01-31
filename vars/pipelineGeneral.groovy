@@ -33,15 +33,27 @@ def call(){
                 } 
             }
 
-             stage('Fase 2: analisis con owasp') {
+            stage('Fase 2: Desplegar imagen en docker') {
                 steps {
                     script{
-                        def owaspAnalisis = new org.devops.lb_owasp()
-                        owaspAnalisis.AnalisisOwasp("${projectName}")
+                            def deployImg = new org.devops.lb_deploydocker()
+                            deployImg.despliegueContenedor("${projectName}")
+                        }
+                    }    
+                }                                        
+
+            stage('Fase 2: analisis con owasp') {
+                steps {
+                    script{
+                        def owasp = new org.devops.lb_owasp()
+                        owasp.AnalisisOwasp("${PROprojectNameJECT}")
                     }
                 }
 
         }
+    
+
     }
+    
   }
 }

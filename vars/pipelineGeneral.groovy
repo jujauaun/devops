@@ -28,7 +28,7 @@ def call(){
                         publicImage.publicarImage("${projectName}")
                     }
                     
-                } despliegueContenedor
+                } 
             }
 
             stage('Fase 2: Desplegar imagen en docker') {
@@ -39,7 +39,7 @@ def call(){
                         }
                     }    
                 }                                        
-            }
+            
 
             /*stage('Fase 1: Proceso de construcción') {
                 steps {

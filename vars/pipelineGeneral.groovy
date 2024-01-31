@@ -24,8 +24,8 @@ def call(){
             stage('Fase 2: publicar imagen a docker hub') {
                 steps {
                     script {
-                        def Pimage = new org.devops.lb_publicardockerhub.groovy
-                        Pimage.publicarImage("${PROJECT}")
+                        def publicImage = new org.devops.lb_publicardockerhub()
+                        publicImage.publicarImage("${PROJECT}")
                     }
                     
                 } 

@@ -21,6 +21,15 @@ def call(){
                     }
                 }
             }
+            stage('Fase 2: publicar imagen a docker hub') {
+                steps {
+                    script {
+                        def Pimage = new org.devops.lb_publicardockerhub.groovy
+                        Pimage.publicarImage("${PROJECT}")
+                    }
+                    
+                } 
+            }
 
             /*stage('Fase 1: Proceso de construcción') {
                 steps {
@@ -40,6 +49,39 @@ def call(){
                         test.runTest()
                         def analisysSonarqube = new org.devops.lb_analisissonarqube()
                         analisysSonarqube.analisys("${projectName}")
+                    }
+                }
+            }
+ stage('Push Imagen') {
+                steps {
+                    script {
+                        def pushimage = new org.devops.push()
+                        pushimage("${PROJECT}")
+                    }
+                    
+                } 
+            }
+
+            stage('Deploy Imagen') {
+                steps {
+                    script{
+                        DOCKER_EXIST = sh(returnStdout: true, script: 'echo "$(docker ps -q --filter name=${PROJECT})"').trim()
+                        
+                        if (DOCKER_EXIST != '') {  
+                            sh "docker start ${PROJECT}"
+                        } else {
+                            def deployimage = new org.devops.deploy()
+                            deployimage("${PROJECT}")
+                        }
+                    }    
+                }                                        
+            }
+
+            stage('Escaneo de la aplicación') {
+                steps {
+                    script{
+                         def owaspscan = new org.devops.owasp()
+                        owaspscan("${PROJECT}")
                     }
                 }
             }*/

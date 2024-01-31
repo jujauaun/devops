@@ -25,7 +25,7 @@ def call(){
                 steps {
                     script {
                         def publicImage = new org.devops.lb_publicardockerhub()
-                        publicImage.publicarImage("${PROJECT}")
+                        publicImage.publicarImage("${projectName}")
                     }
                     
                 } 

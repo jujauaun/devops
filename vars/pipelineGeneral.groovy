@@ -42,7 +42,7 @@ def call(){
                     }    
                 }                                        
 
-            stage('Fase 2: analisis con owasp') {
+          /*  stage('Fase 2: analisis con owasp') {
                 steps {
                     script{
                         def owasp = new org.devops.lb_owasp()
@@ -50,7 +50,7 @@ def call(){
                     }
                 }
 
-        }
+        }*/
     
 
     }

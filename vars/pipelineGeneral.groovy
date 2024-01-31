@@ -28,7 +28,17 @@ def call(){
                         publicImage.publicarImage("${projectName}")
                     }
                     
-                } 
+                } despliegueContenedor
+            }
+
+            stage('Fase 2: Desplegar imagen en docker') {
+                steps {
+                    script{
+                            def deployImg = new org.devops.lb_deploydocker()
+                            deployImg.despliegueContenedor("${projectName}")
+                        }
+                    }    
+                }                                        
             }
 
             /*stage('Fase 1: Proceso de construcción') {

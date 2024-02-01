@@ -1,6 +1,6 @@
 package org.devops
 
 def despliegueContenedor(projectGitName){
-    sh "docker pull josecorreav/${projectGitName}"
-    sh "docker run -p 3000:3000 --network=${env.JOB_NAME} --name ${projectGitName} -d ${projectGitName}"
+    sh "docker pull josecorreav/react-test-jenkinsfile"
+    sh "docker run -d --name ${projectGitName} --network=${env.NameNetwork} -p 8081:5174 --user root josecorreav/${projectGitName}"
 }

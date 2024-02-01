@@ -3,8 +3,12 @@ package org.devops
 def AnalisisOwasp(projectGitName){
       //  sh "docker network create ${env.JOB_NAME}"
       //  sh "docker network connect ${env.JOB_NAME} ${projectGitName}"
-        sh "docker run -dt --name owasp  --user root --network=${env.NameNetwork} owasp/zap2docker-stable /bin/bash"
-        sh 'docker exec owasp mkdir /zap/wrk'
-        sh "docker exec owasp zap-full-scan.py -t ${env.dominio} -r reportOwasp.html -I"
-        sh 'docker cp owasp:/zap/wrk/reportOwasp.html ${WORKSPACE}/reportOwasp.html' 
+        sh """docker run  --rm -v reportOwasp:/zap/wrk/:rw /
+        --name owasp /
+        --user root --network=${env.NameNetwork} /
+        -t owasp/zap2docker-stable /
+        zap-full-scan.py /
+        -t ${env.dominio} /
+        -r reportOwasp.html -I
+            """
 }

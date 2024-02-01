@@ -6,5 +6,6 @@ sh """ docker run --rm -v ProjectOwasp:/zap/wrk/:rw \
       -t owasp/zap2docker-stable \
       zap-full-scan.py \
       -t ${env.dominio} \ 
-      -r ProjectOwasp.html -I"
+      -r ProjectOwasp.html -I
+      """
 }

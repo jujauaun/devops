@@ -12,9 +12,9 @@ def call(){
             projectName = "${env.UrlGitHub}".replaceAll('.+/(.+)\\.git', '$1')toLowerCase()
         } 
 
-        triggers{
+       /* triggers{
             pollSCM('* * * * * 1-5')
-        }
+        } */
         
 
         stages{

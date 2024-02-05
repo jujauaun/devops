@@ -28,7 +28,7 @@ def call(){
                 }
             }
 
-            stage('Fase 2: publicar imagen a docker hub') {
+            stage('Fase 2: publicar imagen a docker hub.') {
                 steps {
                     script {
                         def publicImage = new org.devops.lb_publicardockerhub()

@@ -13,7 +13,7 @@ def call(){
         } 
 
         triggers{
-            poliSCM('* * * * *')
+            pollSCM('* * * * *')
         }
         
 

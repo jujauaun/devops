@@ -13,7 +13,7 @@ def call(){
         } 
 
         triggers{
-            pollSCM('H/5 * * * * *')
+            pollSCM('* * * * * 1-5')
         }
         
 

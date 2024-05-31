@@ -1,23 +1,22 @@
 def call(){
 
-    pipeline{
+    pipeline {
 
         agent any
 
-        tools{
+        tools {
             nodejs 'NodeJS18'
         }
-        
-        environment{
-            projectName = "${env.UrlGitHub}".replaceAll('.+/(.+)\\.git', '$1')toLowerCase()
+
+        environment {
+            projectName = "${env.UrlGitHub}".replaceAll('.+/(.+)\\.git', '$1').toLowerCase()
         } 
 
-       /* triggers{
+        /* triggers {
             pollSCM('* * * * * 1-5')
         } */
-        
 
-        stages{
+        stages {
 
             stage('Fase 2: Construcción de imagen en Docker Desktop') {
                 steps {
@@ -28,37 +27,32 @@ def call(){
                 }
             }
 
-            stage('Fase 2: publicar imagen a docker hub.') {
+            stage('Fase 2: Publicar imagen a Docker Hub') {
                 steps {
                     script {
                         def publicImage = new org.devops.lb_publicardockerhub()
                         publicImage.publicarImage("${projectName}")
                     }
-                    
                 } 
             }
 
-            stage('Fase 2: Desplegar imagen en docker') {
+            stage('Fase 2: Desplegar imagen en Docker') {
                 steps {
-                    script{
-                            def deployImg = new org.devops.lb_deploydocker()
-                            deployImg.despliegueContenedor("${projectName}")
-                        }
-                    }    
-                }                                        
+                    script {
+                        def deployImg = new org.devops.lb_deploydocker()
+                        deployImg.despliegueContenedor("${projectName}")
+                    }
+                }    
+            }
 
-           stage('Fase 2: analisis con owasp') {
+            stage('Fase 2: Análisis con OWASP') {
                 steps {
-                    script{
+                    script {
                         def owasp = new org.devops.lb_owasp()
                         owasp.AnalisisOwasp("${projectName}")
                     }
                 }
-
+            }
         }
-    
-
     }
-    
-  }
 }
